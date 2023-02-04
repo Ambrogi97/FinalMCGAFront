@@ -8,7 +8,7 @@ const Header = () => {
         <img src="http://unsplash.it/100/50" alt="" />
       </div>
       <nav>
-        <ul>
+        <ul className={styles.menu}>
           <li>
             <Link to="/">Home</Link>
           </li>
