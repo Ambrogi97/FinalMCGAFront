@@ -1,27 +1,26 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import Form from "../components/Form/Form";
+import Table from "../components/Table/Table";
+import styles from "./styles/Products.module.css";
+import { fetchProducts } from "../store/slices/products";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 const Products = () => {
-  const [products, setProducts] = useState([]);
+  const { products } = useSelector(state => state.products);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    async function getProducts() {
-      const res = await fetch("http://localhost:5000/products");
-      const data = await res.json();
-      console.log(data);
-      setProducts(data);
-    }
-
-    getProducts();
-  }, []);
+    dispatch(fetchProducts());
+  }, [dispatch]);
 
   return (
-    <div>
-      {products.map(product => (
-        <div key={product.id}>
-          <p>Producto: {product.name}</p>
-          <p>Precio: {product.price}</p>
-        </div>
-      ))}
+    <div className={styles.container}>
+      <div className={styles.formulario}>
+        <h1>Crear Producto</h1>
+        <Form />
+      </div>
+      <Table data={products} />
     </div>
   );
 };
