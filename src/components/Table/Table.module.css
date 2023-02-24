@@ -17,6 +17,7 @@
   flex-grow: 1;
   align-self: flex-start;
   border: 1px solid #ccc;
+  border-radius: 5px;
 }
 .table thead {
   display: flex;
@@ -37,6 +38,7 @@
   padding: 10px 5px;
   text-align: left;
   border: 1px solid #ccc;
+  background-color: #ccc;
 }
 .table tbody {
   display: flex;
@@ -56,7 +58,5 @@
   width: 100%;
   height: 100%;
   flex-grow: 1;
-  padding: 10px 5px;
-  border-right: 1px solid #ccc;
-  border-left: 1px solid #ccc;
+  padding: 5px 10px;
 }
