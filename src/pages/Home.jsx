@@ -10,7 +10,10 @@ const Home = () => {
         <p>John Smith</p>
       </div>
       <div className={styles.image}>
-        <img src="http://unsplash.it/400/400/" alt="hero" />
+        <img
+          src="https://startupsmagazine.co.uk/sites/default/files/2020-11/AdobeStock_291895827ed.jpg"
+          alt="hero"
+        />
       </div>
     </div>
   );
