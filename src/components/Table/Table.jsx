@@ -1,9 +1,11 @@
 import styles from "./Table.module.css";
 import { useDispatch } from "react-redux";
-import { removeProduct, editProduct } from "../../store/slices/products";
+import { removeProduct } from "../../store/slices/products";
+import { useNavigate } from "react-router-dom";
 
 const Table = ({ data }) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleDelete = product => {
     // eslint-disable-next-line no-restricted-globals
@@ -14,20 +16,12 @@ const Table = ({ data }) => {
     }
   };
 
-  const handleEdit = product => {
-    // eslint-disable-next-line no-restricted-globals
-    const ok = confirm(`Editando el producto: ${product.name}`);
-    // if (ok) {
-    //   dispatch(editProduct(product._id));
-    // }
-  };
-
   return (
     <div className={styles.container}>
       <h1>Tabla de productos</h1>
       <table className={styles.table}>
         <thead>
-          <tr>
+          <tr key={0}>
             <th>Nombre</th>
             <th>Precio</th>
             <th>Stock</th>
@@ -43,7 +37,7 @@ const Table = ({ data }) => {
               <td>{product.stock} unidades</td>
               <td>{product.description}</td>
               <td>
-                <button onClick={() => handleEdit(product)}>Editar</button>
+                <button onClick={() => navigate(`/edit/${product._id}`)}>Editar</button>
                 <button onClick={() => handleDelete(product)}>Eliminar</button>
               </td>
             </tr>
