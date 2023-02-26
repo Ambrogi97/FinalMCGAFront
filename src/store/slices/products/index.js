@@ -55,6 +55,9 @@ export const fetchProducts = () => async dispatch => {
   try {
     dispatch(getProducts());
     const response = await axios.get("http://localhost:5000/products");
+    if (response.status !== 200) {
+      throw new Error("Error fetching products");
+    }
     dispatch(getProductsSuccess(response.data));
   } catch (error) {
     dispatch(getProductsError(error.message));
@@ -65,9 +68,10 @@ export const fetchProducts = () => async dispatch => {
 export const createProduct = product => async dispatch => {
   try {
     const response = await axios.post("http://localhost:5000/products", product);
-    if (response.status === 201) {
-      dispatch(addProduct(product));
+    if (response.status !== 201) {
+      throw new Error("Something went wrong");
     }
+    dispatch(addProduct(product));
   } catch (error) {
     console.error(error);
   }
@@ -77,9 +81,10 @@ export const createProduct = product => async dispatch => {
 export const removeProduct = product => async dispatch => {
   try {
     const response = await axios.delete(`http://localhost:5000/products/${product._id}`);
-    if (response.status === 200) {
-      dispatch(deleteProduct(product._id));
+    if (response.status !== 200) {
+      throw new Error("Error deleting product");
     }
+    dispatch(deleteProduct(product._id));
   } catch (error) {
     console.error(error);
   }
@@ -88,10 +93,11 @@ export const removeProduct = product => async dispatch => {
 // update a product
 export const editProduct = product => async dispatch => {
   try {
-    const response = await axios.put(`http://localhost:5000/products/${product.id}`, product);
-    if (response.status === 200) {
-      dispatch(updateProduct(product));
+    const response = await axios.put(`http://localhost:5000/products/${product._id}`, product);
+    if (response.status !== 200) {
+      throw new Error("Something went wrong");
     }
+    dispatch(updateProduct(product));
   } catch (error) {
     console.error(error);
   }

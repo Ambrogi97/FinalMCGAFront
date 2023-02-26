@@ -5,7 +5,7 @@ const Header = () => {
   return (
     <div className={styles.container}>
       <div>
-        <img src="http://unsplash.it/100/50" alt="" />
+        <img src="" alt="" />
       </div>
       <nav>
         <ul className={styles.menu}>
