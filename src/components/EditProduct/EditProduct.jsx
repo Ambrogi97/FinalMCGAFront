@@ -10,14 +10,20 @@ const EditProduct = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { products } = useSelector(state => state.products);
+  const { status } = useSelector(state => state.users);
   const { id } = useParams();
   const product = products.find(product => product._id === id);
 
   const { register, handleSubmit, errors, reset } = useForm();
 
   useEffect(() => {
-    reset(product);
-  }, [products, id, reset]);
+    if (status === "succeeded") {
+      reset(product);
+    } else {
+      navigate("/");
+    }
+
+  }, [product, id, reset, navigate, status]);
 
   const onSubmit = data => {
     const newData = { ...data, _id: id };
@@ -29,6 +35,7 @@ const EditProduct = () => {
   return (
     <div>
       <form onSubmit={handleSubmit(onSubmit)}>
+        {/* <label htmlFor="name">Nombre:</label> */}
         <input type="text" {...register("name", { required: true })} placeholder="Nombre:" />
         {errors?.name && <p>El nombre es requerido</p>}
         <input type="text" {...register("price", { required: true })} placeholder="Precio:" />
@@ -39,6 +46,11 @@ const EditProduct = () => {
           type="text"
           {...register("description", { required: true })}
           placeholder="Descripción:"
+        />
+        <input
+          type="text"
+          {...register("image")}
+          placeholder="Image URL:"
         />
         <input type="submit" value="Guardar" />
       </form>

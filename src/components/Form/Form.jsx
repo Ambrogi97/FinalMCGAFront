@@ -32,6 +32,11 @@ const Form = () => {
           {...register("description", { required: true })}
           placeholder="Descripción:"
         />
+        <input
+          type="text"
+          {...register("image")}
+          placeholder="Imagen URL:"
+        />
         <input type="submit" value="Guardar" />
       </form>
     </div>

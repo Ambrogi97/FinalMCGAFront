@@ -1,12 +1,22 @@
 import styles from "./Table.module.css";
-import { useDispatch } from "react-redux";
-import { removeProduct } from "../../store/slices/products";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchProducts, removeProduct } from "../../store/slices/products";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 const Table = ({ data }) => {
+  const { status } = useSelector(state => state.users);
+  const { products } = useSelector(state => state.products);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  useEffect(() => {
+    dispatch(fetchProducts());
+  }, [dispatch])
+
+
+  const loggedIn = status === 'succeeded' ? true : false;
   const handleDelete = product => {
     // eslint-disable-next-line no-restricted-globals
     const ok = confirm(`Seguro que desea borrar el producto: ${product.name}`);
@@ -26,20 +36,21 @@ const Table = ({ data }) => {
             <th>Precio</th>
             <th>Stock</th>
             <th>Descripción</th>
-            <th>Acciones</th>
+            {loggedIn && <th>Acciones</th>}
           </tr>
         </thead>
         <tbody>
-          {data?.map(product => (
+          {products?.map(product => (
             <tr key={product._id} id={product._id}>
               <td>{product.name}</td>
               <td>${product.price}</td>
               <td>{product.stock} unidades</td>
               <td>{product.description}</td>
-              <td>
-                <button onClick={() => navigate(`/edit/${product._id}`)}>Editar</button>
-                <button onClick={() => handleDelete(product)}>Eliminar</button>
-              </td>
+              {loggedIn && (
+                <td>
+                  <button onClick={() => navigate(`/edit/${product._id}`)}>Editar</button>
+                  <button onClick={() => handleDelete(product)}>Eliminar</button>
+                </td>)}
             </tr>
           ))}
         </tbody>

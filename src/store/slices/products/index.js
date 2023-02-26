@@ -54,7 +54,7 @@ export default productsSlice.reducer;
 export const fetchProducts = () => async dispatch => {
   try {
     dispatch(getProducts());
-    const response = await axios.get("http://localhost:5000/products");
+    const response = await axios.get(`${process.env.REACT_APP_API_URI}/products`);
     if (response.status !== 200) {
       throw new Error("Error fetching products");
     }
@@ -67,7 +67,7 @@ export const fetchProducts = () => async dispatch => {
 // create a new product
 export const createProduct = product => async dispatch => {
   try {
-    const response = await axios.post("http://localhost:5000/products", product);
+    const response = await axios.post(`${process.env.REACT_APP_API_URI}/products`, product);
     if (response.status !== 201) {
       throw new Error("Something went wrong");
     }
@@ -80,7 +80,7 @@ export const createProduct = product => async dispatch => {
 // delete a product
 export const removeProduct = product => async dispatch => {
   try {
-    const response = await axios.delete(`http://localhost:5000/products/${product._id}`);
+    const response = await axios.delete(`${process.env.REACT_APP_API_URI}/products/${product._id}`);
     if (response.status !== 200) {
       throw new Error("Error deleting product");
     }
@@ -93,7 +93,7 @@ export const removeProduct = product => async dispatch => {
 // update a product
 export const editProduct = product => async dispatch => {
   try {
-    const response = await axios.put(`http://localhost:5000/products/${product._id}`, product);
+    const response = await axios.put(`${process.env.REACT_APP_API_URI}/products/${product._id}`, product);
     if (response.status !== 200) {
       throw new Error("Something went wrong");
     }

@@ -5,6 +5,7 @@ import { Routes, Route } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "./store";
 import Edit from "./pages/Edit";
+import Login from "./pages/Login";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/products" element={<Products />} />
           <Route path="/edit/:id" element={<Edit />} />
         </Route>
