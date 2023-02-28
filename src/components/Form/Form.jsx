@@ -4,7 +4,7 @@ import { createProduct } from "../../store/slices/products";
 
 const Form = () => {
   const dispatch = useDispatch();
-  const { register, handleSubmit, errors, reset } = useForm({
+  const { register, handleSubmit, formState: { errors }, reset } = useForm({
     defaultValues: {
       name: "",
       description: "",

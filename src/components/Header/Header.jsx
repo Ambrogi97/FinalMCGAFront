@@ -35,7 +35,7 @@ const Header = () => {
             </li>
           </>
           ) : (<li>
-            <Link to="/login" onClick={handleLogout}>Iniciar sesión</Link>
+            <Link to="/login">Iniciar sesión</Link>
           </li>)}
         </ul>
       </nav>

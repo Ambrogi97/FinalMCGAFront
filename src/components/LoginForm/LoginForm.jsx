@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux'
 import { login } from '../../store/slices/user'
 const LoginForm = () => {
     const dispatch = useDispatch()
-    const { register, handleSubmit, errors } = useForm({
+    const { register, handleSubmit, formState: { errors } } = useForm({
         defaultValues: {
             email: "",
             password: ""

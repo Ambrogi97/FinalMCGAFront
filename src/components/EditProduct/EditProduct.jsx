@@ -14,7 +14,7 @@ const EditProduct = () => {
   const { id } = useParams();
   const product = products.find(product => product._id === id);
 
-  const { register, handleSubmit, errors, reset } = useForm();
+  const { register, handleSubmit, formState: { errors }, reset } = useForm();
 
   useEffect(() => {
     if (status === "succeeded") {
