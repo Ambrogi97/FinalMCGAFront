@@ -30,6 +30,12 @@
   height: 100%;
 }
 
+.formulario form span {
+  margin-top: -8px;
+  color: red;
+  font-size: 11px;
+}
+
 .formulario input {
   width: 100%;
   height: 40px;

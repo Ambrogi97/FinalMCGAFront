@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import Form from "../components/Form/Form";
 import Table from "../components/Table/Table";
 import styles from "./styles/Products.module.css";
-import { fetchProducts } from "../store/slices/products";
+import { fetchProducts } from "../store/actions/productActions";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";

@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
-import { createProduct } from "../../store/slices/products";
+import { createProduct } from "../../store/actions/productActions";
 
 const Form = () => {
   const dispatch = useDispatch();
@@ -22,7 +22,7 @@ const Form = () => {
     <div>
       <form onSubmit={handleSubmit(onSubmit)}>
         <input type="text" {...register("name", { required: true })} placeholder="Nombre:" />
-        {errors?.name && <p>El nombre es requerido</p>}
+        {errors?.name && <span>El nombre es requerido</span>}
         <input type="text" {...register("price", { required: true })} placeholder="Precio:" />
         {errors?.price && <span>El precio es requerido</span>}
         <input type="text" {...register("stock", { required: true })} placeholder="Stock:" />

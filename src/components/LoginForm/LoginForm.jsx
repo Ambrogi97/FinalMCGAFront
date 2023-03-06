@@ -1,6 +1,6 @@
 import { useForm } from 'react-hook-form'
 import { useDispatch } from 'react-redux'
-import { login } from '../../store/slices/user'
+import { login } from '../../store/actions/userActions'
 const LoginForm = () => {
     const dispatch = useDispatch()
     const { register, handleSubmit, formState: { errors } } = useForm({
@@ -10,8 +10,7 @@ const LoginForm = () => {
         }
     })
     const onSubmit = data => {
-        const { email, password } = data
-        dispatch(login(email, password))
+        dispatch(login(data))
     }
 
     return (

@@ -1,6 +1,6 @@
 import styles from "./Table.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchProducts, removeProduct } from "../../store/slices/products";
+import { fetchProducts, removeProduct } from "../../store/actions/productActions";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
@@ -18,7 +18,6 @@ const Table = ({ data }) => {
 
   const loggedIn = status === 'succeeded' ? true : false;
   const handleDelete = product => {
-    // eslint-disable-next-line no-restricted-globals
     const ok = confirm(`Seguro que desea borrar el producto: ${product.name}`);
 
     if (ok) {
@@ -31,7 +30,7 @@ const Table = ({ data }) => {
       <h1>Tabla de productos</h1>
       <table className={styles.table}>
         <thead>
-          <tr key={0}>
+          <tr key={'titles'}>
             <th>Nombre</th>
             <th>Precio</th>
             <th>Stock</th>

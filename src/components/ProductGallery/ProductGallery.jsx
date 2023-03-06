@@ -1,6 +1,6 @@
 import styles from "./ProductGallery.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchProducts } from "../../store/slices/products";
+import { fetchProducts } from "../../store/actions/productActions";
 import { useEffect } from "react";
 
 const ProductGallery = () => {

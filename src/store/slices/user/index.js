@@ -3,7 +3,7 @@ import axios from "axios";
 
 const initialState = {
     user: {},
-    status: "idle", // loading | succeeded | failed
+    status: "idle", 
     error: null,
     token: null
 };
@@ -51,7 +51,6 @@ export const {
 
 export default userSlice.reducer;
 
-// login
 export const login = (email, password) => async dispatch => {
     try {
         dispatch(loginPending());
@@ -60,7 +59,7 @@ export const login = (email, password) => async dispatch => {
             password
         });
         if (response.status !== 200) {
-            throw new Error("Error logging in");
+            throw new Error("Error al iniciar sesión");
         }
         localStorage.setItem("token", response.data.token);
         dispatch(loginSuccess(response.data.token));
@@ -69,7 +68,6 @@ export const login = (email, password) => async dispatch => {
     }
 }
 
-// logout
 export const logout = () => async dispatch => {
     try {
         dispatch(logoutPending());

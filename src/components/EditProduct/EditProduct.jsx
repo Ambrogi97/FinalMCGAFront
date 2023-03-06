@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { editProduct } from "../../store/slices/products";
+import { editProduct } from "../../store/actions/productActions";
 
 const EditProduct = () => {
   const dispatch = useDispatch();
@@ -35,7 +35,7 @@ const EditProduct = () => {
   return (
     <div>
       <form onSubmit={handleSubmit(onSubmit)}>
-        {/* <label htmlFor="name">Nombre:</label> */}
+
         <input type="text" {...register("name", { required: true })} placeholder="Nombre:" />
         {errors?.name && <p>El nombre es requerido</p>}
         <input type="text" {...register("price", { required: true })} placeholder="Precio:" />
@@ -47,6 +47,7 @@ const EditProduct = () => {
           {...register("description", { required: true })}
           placeholder="Descripción:"
         />
+        {errors?.description && <span>La descripción es requerida</span>}
         <input
           type="text"
           {...register("image")}
