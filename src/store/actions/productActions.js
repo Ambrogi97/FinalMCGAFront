@@ -29,7 +29,7 @@ export const createProduct = product => async dispatch => {
         }
         dispatch(addProduct(product));
     } catch (error) {
-        console.error(error);
+        alert(error.response.data.errors);
     }
 };
 
@@ -41,7 +41,7 @@ export const removeProduct = product => async dispatch => {
         }
         dispatch(deleteProduct(product._id));
     } catch (error) {
-        console.error(error);
+        alert(error.response.data.errors);
     }
 };
 
@@ -58,6 +58,6 @@ export const editProduct = product => async dispatch => {
         }
         dispatch(updateProduct(product));
     } catch (error) {
-        console.error(error);
+        alert(error.response.data.errors);
     }
 };

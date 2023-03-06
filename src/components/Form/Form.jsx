@@ -29,7 +29,7 @@ const Form = () => {
         {errors?.stock && <span>El stock es requerido</span>}
         <input
           type="text"
-          {...register("description", { required: true })}
+          {...register("description")}
           placeholder="Descripción:"
         />
         <input

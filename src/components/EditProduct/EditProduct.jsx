@@ -13,12 +13,21 @@ const EditProduct = () => {
   const { status } = useSelector(state => state.users);
   const { id } = useParams();
   const product = products.find(product => product._id === id);
+  const { name, price, stock, description, image } = product;
 
-  const { register, handleSubmit, formState: { errors }, reset } = useForm();
+  const { register, handleSubmit, formState: { errors }, reset } = useForm({
+    defaultValues: {
+      name,
+      price,
+      stock,
+      description,
+      image
+    }
+  });
 
   useEffect(() => {
     if (status === "succeeded") {
-      reset(product);
+      reset();
     } else {
       navigate("/");
     }
@@ -44,7 +53,7 @@ const EditProduct = () => {
         {errors?.stock && <span>El stock es requerido</span>}
         <input
           type="text"
-          {...register("description", { required: true })}
+          {...register("description")}
           placeholder="Descripción:"
         />
         {errors?.description && <span>La descripción es requerida</span>}

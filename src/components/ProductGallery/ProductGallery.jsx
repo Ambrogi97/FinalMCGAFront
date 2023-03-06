@@ -2,6 +2,7 @@ import styles from "./ProductGallery.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from "../../store/actions/productActions";
 import { useEffect } from "react";
+import defaultImage from "../../assets/default-image.png";
 
 const ProductGallery = () => {
     const { products, status } = useSelector(state => state.products);
@@ -24,7 +25,7 @@ const ProductGallery = () => {
                 {products?.map(product => (
                     <div className={styles.product} key={product._id}>
                         <div className={styles.productImage}>
-                            <img src={product.image} alt={product.name} />
+                            <img src={product.image || defaultImage} alt={product.name} />
                         </div>
                         <div className={styles.productInfo}>
                             <h3>{product.name}</h3>

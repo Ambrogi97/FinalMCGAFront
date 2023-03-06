@@ -29,12 +29,20 @@ export const productsSlice = createSlice({
       state.products = state.products.filter(product => product._id !== action.payload);
     },
     updateProduct: (state, action) => {
+      state.status = "loading";
+    },
+    updateProductSuccess: (state, action) => {
       state.products = state.products.map(product => {
         if (product._id === action.payload._id) {
           return action.payload;
+        } else {
+          return product;
         }
-        return product;
       });
+    },
+    updateProductError: (state, action) => {
+      state.status = "failed";
+      state.error = action.payload;
     }
   }
 });

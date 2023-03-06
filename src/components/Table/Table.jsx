@@ -18,6 +18,7 @@ const Table = ({ data }) => {
 
   const loggedIn = status === 'succeeded' ? true : false;
   const handleDelete = product => {
+    // eslint-disable-next-line no-restricted-globals
     const ok = confirm(`Seguro que desea borrar el producto: ${product.name}`);
 
     if (ok) {

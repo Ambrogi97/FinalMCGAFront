@@ -17,7 +17,7 @@ export const login = createAsyncThunk(
 
             dispatch(getUser(token));
         } catch (error) {
-            return rejectWithValue(error.message);
+            return rejectWithValue(error.response.data.message);
         }
     }
 );
@@ -40,7 +40,7 @@ export const getUser = createAsyncThunk(
             }
             return response.data.user;
         } catch (error) {
-            return rejectWithValue(error.message);
+            return rejectWithValue(error);
         }
     }
 )
